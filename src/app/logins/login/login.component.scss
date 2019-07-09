@@ -1,0 +1,94 @@
+// .example-card {
+//     max-width: 400px;
+//     margin: auto;
+//   }
+  
+//   .example-header-image {
+//     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+//     background-size: cover;
+//   }
+
+//   .example-form {
+//     min-width: 150px;
+//     max-width: 500px;
+//     width: 100%;
+//   }
+  
+//   .example-full-width {
+//     width: 100%;
+//   }
+//   .w-100-p{
+//       width: 100%;
+//   }
+//   .img {
+//     width: 100%;
+//     margin-bottom: 18%;
+//   }
+//   .card-picture {
+//     width: 23%;
+//     margin-bottom: 2%;
+//   }
+//   .container {
+//     min-height: 100%;
+//     width: 100%;
+//   }
+//   .search-form {
+//     width: 90%;
+//   }
+.container{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #1976d2;
+  height: 100%; 
+}
+.box{
+  width: 300px;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+background-color: #3949ab ;
+}
+.box input[type="text"],.box input[type="password"]{
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #303f9f ;
+  padding: 14px 10px;
+width: 200px;
+color: white;
+outline: none;
+border-radius: 24px;
+transition: 0,25s;
+}
+.box h1{
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.box input[type="text"]:focus,.box input[type="password"]:focus{
+  width: 280px;
+  border-color: #ff80ab;
+}
+.box input[type="submit"]{
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #ff80ab;
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transform: 0.25s;
+  cursor: pointer;
+}
+.box input[type="submit"]:hover{
+  background-color: #37474f ;
+}
