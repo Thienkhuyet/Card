@@ -10,9 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { SharedModule } from './shared/shared.module';
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -27,8 +29,9 @@ import { SharedModule } from './shared/shared.module';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    SharedModule
+    SharedModule,
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

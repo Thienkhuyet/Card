@@ -20,9 +20,9 @@ if(isset($data)){
 $username = $data->username;
 $password = $data->password;
 }
-$table_name = 'user';
+$table_name = 'taikhoan';
 
-$query = "SELECT id,username,password ,active FROM " . $table_name . " WHERE username = ? LIMIT 0,1";
+$query = "SELECT TK_id,Ten,Matkhau ,Vaitro FROM " . $table_name . " WHERE Ten = ? LIMIT 0,1";
 
 $stmt = $conn->prepare( $query );
 $stmt->bindParam(1, $username);
@@ -31,14 +31,15 @@ $num = $stmt->rowCount();
 
 if($num > 0){
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    $id = $row['id'];
-    $username2 = $row['username'];
-    $active = $row['active'];
-    $password2 = $row['password'];
+    $id = $row['TK_id'];
+    $username2 = $row['Ten'];
+    $active = $row['Vaitro'];
+    $password2 = $row['Matkhau'];
 
     if($password == $password2)
     {
         $secret_key = "Minhvuong";
+        // key jwt
         $issuer_claim = "THE_ISSUER"; // this can be the servername
         $audience_claim = "THE_AUDIENCE";
         $issuedat_claim = time(); // issued at
@@ -53,7 +54,7 @@ if($num > 0){
             "data" => array(
                 "id" => $id,
                 "username" => $username2,
-                "active" => $active,
+                "" => $active,
         ));
 
 

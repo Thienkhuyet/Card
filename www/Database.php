@@ -14,7 +14,7 @@
 class Database {
     //put your code here
     private $host = "localhost";
-    private $db_name = "test";
+    private $db_name = "ql_khachhang";
     private $username = "root";
     private $password = "root";
     public $conn;

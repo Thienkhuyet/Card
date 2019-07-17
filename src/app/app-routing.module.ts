@@ -10,17 +10,21 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: './logins/logins.module#LoginsModule'
+    loadChildren: () => import('./logins/logins.module').then(m => m.LoginsModule)
 
   },
   {
     path: 'home',
-    loadChildren: './home/home.module#HomeModule',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
     canActivate: [OauthGuard]
   },
   {
     path: 'shared',
-    loadChildren: './shared/shared.module#SharedModule',
+    loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule),
+  },
+  {
+    path: 'khachhang',
+    loadChildren: () => import('./khachhang/khachhang.module').then(m => m.KhachhangModule),
   }
 ];
 

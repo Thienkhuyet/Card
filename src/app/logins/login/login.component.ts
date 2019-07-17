@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LoginService } from '../login.service';
+import { LoginService } from '../../login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,9 @@ import { LoginService } from '../login.service';
 export class LoginComponent implements OnInit {
 
   loginFrom: FormGroup;
-  constructor(private fb: FormBuilder, private loginService: LoginService) { }
+  constructor(private fb: FormBuilder,
+    private router: Router,
+    private loginService: LoginService) { }
   tocken: any;
   ngOnInit() {
     this.loginFrom = this.fb.group({
@@ -20,10 +23,11 @@ export class LoginComponent implements OnInit {
   }
   onSubmit() {
     const { value, valid } = this.loginFrom;
-    console.log(value);
     if (valid) {
+
       this.loginService.login(value).subscribe(res => {
         this.loginService.saveTocken(res.jwt);
+        this.router.navigate(['/home']);
       })
     } else {
       console.log("loi login");

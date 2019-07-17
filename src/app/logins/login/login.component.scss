@@ -1,94 +1,156 @@
-// .example-card {
-//     max-width: 400px;
-//     margin: auto;
-//   }
-  
-//   .example-header-image {
-//     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-//     background-size: cover;
-//   }
-
-//   .example-form {
-//     min-width: 150px;
-//     max-width: 500px;
-//     width: 100%;
-//   }
-  
-//   .example-full-width {
-//     width: 100%;
-//   }
-//   .w-100-p{
-//       width: 100%;
-//   }
-//   .img {
-//     width: 100%;
-//     margin-bottom: 18%;
-//   }
-//   .card-picture {
-//     width: 23%;
-//     margin-bottom: 2%;
-//   }
-//   .container {
-//     min-height: 100%;
-//     width: 100%;
-//   }
-//   .search-form {
-//     width: 90%;
-//   }
-.container{
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background-color: #1976d2;
-  height: 100%; 
-}
-.box{
-  width: 300px;
-  padding: 40px;
+.card{
+  width: 330px;
+  height: 550px;
   position: absolute;
-  top: 50%;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  box-shadow: 0 5px 15px rgba(0,0,0,.4);
+  overflow: hidden;
+  
+}
+.card-header{
+  position: relative;
+  overflow: hidden;
+  background: #2979ff;
+  width: 100%;
+  height: 45%;
+}
+.card-content{
+  position: relative;
+  height: 20%;
+}
+.card-content .content{
+  
+   width: 90%;
+   height: 218px;
+   border-radius: 15px;
+   background: #ffffff;
+
+   padding: 5px;
+   box-shadow: 0 5px 15px rgba(0,0,0,.4);
+   text-align: center;
+  position: absolute; top: 0; bottom: 0; left: 0; right: 0;
+        display: inline-block; margin: auto;
+
+}
+.example-form {
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.content button{
+  border:none;
+  outline: none;
+  pointer-events: auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,.4);
+  padding: 15px;
+  border-radius: 22px;
+  background: #2962ff;
+  width: 170px;
+  overflow: visible;
+  transform: translate3d(0,0,0);
+  transition: background .4s; 
+}
+.content button:hover{
+  box-shadow: 0 5px 20px rgba(0,0,0,.6);
+}
+.icon-header{
+  position: absolute;
+  background: #ffffff;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  top:50%;
   left: 50%;
   transform: translate(-50%,-50%);
+}
+.icon-header .mat-icon{
+  font-size: 64px;
+  line-height: 80px;
+  transform: translate(58%, 10%);
+}
+.card-bottom{
+  width: 100%;
   text-align: center;
-background-color: #3949ab ;
+
 }
-.box input[type="text"],.box input[type="password"]{
-  border: 0;
-  background: none;
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  border: 2px solid #303f9f ;
-  padding: 14px 10px;
-width: 200px;
-color: white;
-outline: none;
-border-radius: 24px;
-transition: 0,25s;
+.card-bottom a {
+  position: absolute;
+  top: 85%;
+  font-size: 20px;
+  bottom: 0%;
+  left: 0;
+  right: 0%;
+  display: inline-block;
+  margin: auto;
+  color: #00e676;
+  text-decoration: none;
 }
-.box h1{
-  color: white;
-  text-transform: uppercase;
-  font-weight: 500;
+@media  screen and (max-width: 600px) {
+  .card{
+width: 100%;
+height: 100%;
+  }
 }
-.box input[type="text"]:focus,.box input[type="password"]:focus{
-  width: 280px;
-  border-color: #ff80ab;
-}
-.box input[type="submit"]{
-  border: 0;
-  background: none;
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  border: 2px solid #ff80ab;
-  padding: 14px 40px;
-  outline: none;
-  color: white;
-  border-radius: 24px;
-  transform: 0.25s;
-  cursor: pointer;
-}
-.box input[type="submit"]:hover{
-  background-color: #37474f ;
-}
+// .container{
+//   margin: 0;
+//   padding: 0;
+//   font-family: sans-serif;
+//   background-color: #1976d2;
+//   height: 100%; 
+// }
+// .box{
+//   width: 300px;
+//   padding: 40px;
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%,-50%);
+//   text-align: center;
+// background-color: #3949ab ;
+// }
+// .box input[type="text"],.box input[type="password"]{
+//   border: 0;
+//   background: none;
+//   display: block;
+//   margin: 20px auto;
+//   text-align: center;
+//   border: 2px solid #303f9f ;
+//   padding: 14px 10px;
+// width: 200px;
+// color: white;
+// outline: none;
+// border-radius: 24px;
+// transition: 0,25s;
+// }
+// .box h1{
+//   color: white;
+//   text-transform: uppercase;
+//   font-weight: 500;
+// }
+// .box input[type="text"]:focus,.box input[type="password"]:focus{
+//   width: 280px;
+//   border-color: #ff80ab;
+// }
+// .box input[type="submit"]{
+//   border: 0;
+//   background: none;
+//   display: block;
+//   margin: 20px auto;
+//   text-align: center;
+//   border: 2px solid #ff80ab;
+//   padding: 14px 40px;
+//   outline: none;
+//   color: white;
+//   border-radius: 24px;
+//   transform: 0.25s;
+//   cursor: pointer;
+// }
+// .box input[type="submit"]:hover{
+//   background-color: #37474f ;
+// }

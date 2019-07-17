@@ -6,11 +6,24 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
   private readonly url = 'http://localhost/www/login.php';
+  isLogin: boolean;
   constructor(private http: HttpClient) { }
   login(body) {
     return this.http.post<any>(this.url, body);
   }
-  saveTocken(tocken: string): void {
+
+  logout() {
+    localStorage.setItem('tocken', null);
+    this.isLogin = false;
+  }
+  saveTocken(tocken: string) {
     localStorage.setItem('tocken', tocken);
+  }
+  kiemtraLogin(): boolean {
+    if (localStorage.getItem('tocken') !== null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

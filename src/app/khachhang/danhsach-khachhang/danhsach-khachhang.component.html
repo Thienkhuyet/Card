@@ -1,0 +1,68 @@
+<div class="example-table-container">
+
+    <table mat-table [dataSource]="dataSource" class="example-table" matSort matSortActive="created" matSortDisableClear
+        matSortDirection="desc">
+
+        <ng-container matColumnDef="STT">
+            <th mat-header-cell *matHeaderCellDef>STT</th>
+            <td mat-cell *matCellDef="let row; let i=index">{{i+1}}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Hoten">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Họ tên</th>
+            <td mat-cell *matCellDef="let row">{{row.Hoten}}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="emial">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Email</th>
+            <td mat-cell *matCellDef="let row">{{row.emial}}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="ngaysinh">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                Ngày sinh
+            </th>
+            <td mat-cell *matCellDef="let row">{{row.ngaysinh | date}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Ten">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                Tên Đăng nhập
+            </th>
+            <td mat-cell *matCellDef="let row">{{row.Ten}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Matkhau">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                Mật khẩu
+            </th>
+            <td mat-cell *matCellDef="let row">{{ row.Matkhau | matkhau }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Chucnang">
+            <th mat-header-cell *matHeaderCellDef>
+                Chức năng
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <span matTooltip="Thêm khach hang" [matTooltipPosition]="'above'">
+                    <mat-icon>add</mat-icon>
+                </span>
+                <span matTooltip="Sửa khách hàng" [matTooltipPosition]="'above'">
+                    <mat-icon>edit</mat-icon>
+                </span>
+                <span matTooltip="Xóa khách hàng" [matTooltipPosition]="'above'">
+                    <mat-icon>delete</mat-icon>
+                </span>
+
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
+
+<mat-paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons></mat-paginator>
