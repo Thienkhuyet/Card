@@ -3,23 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { EditKhachhangComponent } from './edit-khachhang/edit-khachhang.component';
 import { OauthGuard } from '../oauth.guard';
 import { DanhsachKhachhangComponent } from './danhsach-khachhang/danhsach-khachhang.component';
+import { KhachhangComponent } from './khachhang.component';
 
 
 const routes: Routes = [
   {
-    path: 'add',
+    path: '',
     pathMatch: 'full',
-    component: EditKhachhangComponent,
-    //  canActivate: [OauthGuard],
-  },
-  {
-    path: 'edit/:id',
-    component: EditKhachhangComponent,
-    canActivate: [OauthGuard],
-  },
-  {
-    path: 'danhsach',
-    component: DanhsachKhachhangComponent,
+    component: KhachhangComponent,
     //  canActivate: [OauthGuard],
   }
 ];

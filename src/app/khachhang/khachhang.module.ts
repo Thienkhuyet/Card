@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { KhachhangRoutingModule } from './khachhang-routing.module';
 import { EditKhachhangComponent } from './edit-khachhang/edit-khachhang.component';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatNativeDateModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatNativeDateModule, MatMenuModule } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,11 +16,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatkhauPipe } from './matkhau.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { KhachhangComponent } from './khachhang.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 
 
 @NgModule({
-  declarations: [EditKhachhangComponent, ThongbaoComponent, DanhsachKhachhangComponent, MatkhauPipe],
+  declarations: [EditKhachhangComponent, ThongbaoComponent, DanhsachKhachhangComponent, MatkhauPipe, KhachhangComponent],
   imports: [
     CommonModule,
     KhachhangRoutingModule,
@@ -37,7 +41,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTabsModule,
+    MatMenuModule,
+    MatSlideToggleModule
 
 
   ],

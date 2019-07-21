@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class LoginService {
-  private readonly url = 'http://localhost/www/login.php';
+  private readonly url = 'http://localhost/Card/www/login.php';
   isLogin: boolean;
   constructor(private http: HttpClient) { }
   login(body) {

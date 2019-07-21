@@ -1,6 +1,15 @@
-<form [formGroup]="formKhachhang">
+<form [formGroup]="formKhachhang" >
     <div layout="column" class="container">
-        <h2>Thông tin khach hang</h2>
+        <div layout="row  center-spread">
+            <div  class="field"> 
+                  <h2 *ngIf="notEdit">Thông tin khách hàng</h2>
+                  <h2 *ngIf="!notEdit">Sửa thông tin khách hàng</h2>
+                 </div>
+            <div  class="field">
+                <mat-slide-toggle formControlName="Hoatdong">Hoạt Động</mat-slide-toggle>
+            </div>
+        </div>
+     
         <div layout="row center-spread">
             <mat-form-field class="field">
                 <input matInput placeholder="Tên Đăng nhập" formControlName="Tendangnhap" />
@@ -25,7 +34,7 @@
                     *ngIf="formKhachhang.get('Matkhau').hasError('maxlength')&&formKhachhang.get('Matkhau').touched">
                     Mật khẩu quá dài không quá 30 ký tự</mat-error>
             </mat-form-field>
-            <mat-form-field class="field">
+            <mat-form-field class="field" *ngIf="notEdit">
                 <input type="password" matInput placeholder="Nhập lại mật khẩu" formControlName="lapmatkhau" />
                 <span matPrefix>
                     <mat-icon>lock</mat-icon>
@@ -43,34 +52,49 @@
                 <input type="email" matInput placeholder="Email..." formControlName="Email">
                 <mat-hint align="end">vd:nameemail@.xyz.com</mat-hint>
             </mat-form-field>
+            <mat-form-field class="field">
+                <input type="text" matInput placeholder="Số điện thoại" formControlName="SDT">
+                <span matPrefix>
+                  (+84)
+                </span>
+                <mat-hint align="end">vd:914028770</mat-hint>
+            </mat-form-field>
         </div>
         <div layout="row center-spread">
             <mat-form-field class="field">
                 <input [min]="minDate" [max]="maxDate" matInput [matDatepicker]="picker" formControlName="Ngaysinh"
-                    placeholder="Chọn ngày sinh" disabled />
+                    placeholder="Chọn ngày sinh" disabled>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker disabled="false" #picker></mat-datepicker>
             </mat-form-field>
             <mat-form-field class="field">
-                <input type="text" matInput placeholder="Thành phố" formControlName="Thanhpho">
+                <input type="text" matInput placeholder="Thành phố" formControlName="Tinh">
             </mat-form-field>
         </div>
         <div layout="row center-spread">
             <mat-form-field class="field-full">
-                <input matInput placeholder="Quận.." formControlName="Quan">
+                <input matInput placeholder="Quận.." formControlName="Huyen">
             </mat-form-field>
 
         </div>
         <div layout="column">
             <mat-form-field class="field-full">
-                <input matInput placeholder="Thị trấn" formControlName="Thitran">
+                <input matInput placeholder="Thị trấn" formControlName="Xa">
             </mat-form-field>
             <mat-form-field class="field-full">
                 <textarea matInput placeholder="Mô tả chi tiết" formControlName="Mota"></textarea>
             </mat-form-field>
         </div>
         <div layout="row">
-            <div self="right"><button mat-raised-button (click)="onSubmit()" color="accent">Thêm</button></div>
+            <div self="right">
+                 <button mat-raised-button (click)="formKhachhang.reset()" color="pramary">Hủy bỏ</button>
+                <button *ngIf="notEdit" mat-raised-button (click)="onSubmit()" color="accent" [disabled]="formKhachhang.pristine || formKhachhang.invalid">
+                     Thêm
+                </button>
+                <button *ngIf="!notEdit" mat-raised-button (click)="onSubmit()" color="accent" [disabled]="formKhachhang.pristine || formKhachhang.invalid">
+                        Sửa
+                   </button>
+            </div>
         </div>
     </div>
 </form>

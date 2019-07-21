@@ -35,8 +35,9 @@ if($num > 0){
     $username2 = $row['Ten'];
     $active = $row['Vaitro'];
     $password2 = $row['Matkhau'];
+  //  $hoatdong= $row['Hoatdong'];
 
-    if($password == $password2)
+    if($password == $password2 )
     {
         $secret_key = "Minhvuong";
         // key jwt
@@ -54,7 +55,7 @@ if($num > 0){
             "data" => array(
                 "id" => $id,
                 "username" => $username2,
-                "" => $active,
+                "hoatdong" => $active,
         ));
 
 
