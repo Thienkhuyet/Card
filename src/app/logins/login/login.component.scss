@@ -23,7 +23,7 @@
 }
 .card-content .content{
   
-   width: 90%;
+   width: 85%;
    height: 218px;
    border-radius: 15px;
    background: #ffffff;
@@ -53,7 +53,7 @@
   background: #2962ff;
   width: 170px;
   overflow: visible;
-  transform: translate3d(0,0,0);
+  transform: translate(0,-20%);
   transition: background .4s; 
 }
 .content button:hover{

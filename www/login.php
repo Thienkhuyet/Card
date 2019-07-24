@@ -64,7 +64,8 @@ if($num > 0){
             array(
                 "message" => "Successful login.",
                 "jwt" => $jwt,
-                "expireAt" => $expire_claim
+                "expireAt" => $expire_claim,
+                "Username"=>$username2
             ));
     }
     else{
@@ -72,6 +73,8 @@ if($num > 0){
        // http_response_code(401);
         echo json_encode(array("message" => "Login failed.", "password" => $password, "pass"=>$password2));
     }
+}else{
+    echo json_encode(array("message" => "Login failed."));
 }
 ?>
 

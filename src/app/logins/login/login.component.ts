@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
     if (valid) {
 
       this.loginService.login(value).subscribe(res => {
-        this.loginService.saveTocken(res.jwt);
-        console.log(res.jwt);
+        this.loginService.saveTocken(JSON.stringify(res));
+        console.log(res);
         this.router.navigate(['/home']);
       })
     } else {

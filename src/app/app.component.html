@@ -1,4 +1,4 @@
-<mat-drawer-container class="container"  autosize>
+<mat-drawer-container class="container" autosize>
     <mat-drawer #drawer class="sidenav" mode="side">
         <mat-toolbar color="primary"></mat-toolbar>
         <button color="primary" mat-button routerLink="/khachhang" routerLinkActive="selected"
@@ -25,9 +25,9 @@
                         <mat-icon>vpn_key</mat-icon>
                         <samp>Đăng nhập</samp>
                     </button>
-                    <button mat-menu-item >
+                    <button mat-menu-item>
                         <mat-icon>account_balance_wallet
-                            </mat-icon>
+                        </mat-icon>
                         <samp>Tài khoản</samp>
                     </button>
                     <button mat-menu-item>
@@ -37,11 +37,11 @@
                 </mat-menu>
             </mat-toolbar-row>
         </mat-toolbar>
-    <mat-drawer-container   style="height:35em" id="#style-2">
-      
-        <router-outlet></router-outlet>
-    </mat-drawer-container>
+        <mat-drawer-container style="height:90vh" id="#style-2">
 
-       
+            <router-outlet></router-outlet>
+        </mat-drawer-container>
+
+
     </div>
 </mat-drawer-container>
