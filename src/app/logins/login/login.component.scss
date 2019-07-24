@@ -31,7 +31,7 @@
    padding: 5px;
    box-shadow: 0 5px 15px rgba(0,0,0,.4);
    text-align: center;
-  position: absolute; top: 0; bottom: 0; left: 0; right: 0;
+  position: absolute; top: 50%; bottom: 0; left: 0; right: 0;
         display: inline-block; margin: auto;
 
 }
@@ -43,12 +43,15 @@
 .example-full-width {
   width: 100%;
 }
-.content button{
+.content a{
   border:none;
   outline: none;
-  pointer-events: auto;
+  color: #ffffff;
+  text-decoration: none;
+  vertical-align: middle;
   box-shadow: 0 5px 15px rgba(0,0,0,.4);
-  padding: 15px;
+  padding: 13px 57px;
+  cursor: pointer;
   border-radius: 22px;
   background: #2962ff;
   width: 170px;
@@ -56,7 +59,7 @@
   transform: translate(0,-20%);
   transition: background .4s; 
 }
-.content button:hover{
+.content a:hover{
   box-shadow: 0 5px 20px rgba(0,0,0,.6);
 }
 .icon-header{

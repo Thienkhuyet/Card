@@ -26,9 +26,13 @@ export class LoginComponent implements OnInit {
     if (valid) {
 
       this.loginService.login(value).subscribe(res => {
-        this.loginService.saveTocken(JSON.stringify(res));
-        console.log(res);
-        this.router.navigate(['/home']);
+        if (res['message'] == 'Login failed.') {
+
+        } else {
+          this.loginService.saveTocken(JSON.stringify(res));
+          this.router.navigate(['/home']);
+        }
+
       })
     } else {
       console.log("loi login");
