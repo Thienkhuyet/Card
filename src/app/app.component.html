@@ -16,6 +16,8 @@
                 </button>
                 <span>Title</span>
                 <span class="spacer"></span>
+                <span *ngIf="isChao">Xin chào:{{taikhoan}}</span>
+
                 <mat-icon>favorite</mat-icon>
                 <button mat-icon-button [matMenuTriggerFor]="menu">
                     <mat-icon>more_vert</mat-icon>
@@ -30,14 +32,14 @@
                         </mat-icon>
                         <samp>Tài khoản</samp>
                     </button>
-                    <button mat-menu-item>
-                        <mat-icon>delete</mat-icon>
-                        <samp>Delete</samp>
+                    <button mat-menu-item (click)="logout()">
+                        <mat-icon>logout</mat-icon>
+                        <samp>Đăng xuất</samp>
                     </button>
                 </mat-menu>
             </mat-toolbar-row>
         </mat-toolbar>
-        <mat-drawer-container style="height:90vh" id="#style-2">
+        <mat-drawer-container style="height:88vh" id="#style-2">
 
             <router-outlet></router-outlet>
         </mat-drawer-container>

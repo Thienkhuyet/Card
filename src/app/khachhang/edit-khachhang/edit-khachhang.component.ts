@@ -1,10 +1,10 @@
 import { Component, OnInit ,OnDestroy, Input, AfterViewInit} from '@angular/core';
-import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, NgForm } from '@angular/forms';
 import { KhachhangService } from '../khachhang.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { AppDateAdapter, APP_DATE_FORMATS } from './date.adapter';
+import { delay, map } from 'rxjs/operators';
 
 
 @Component({
@@ -22,7 +22,7 @@ import { AppDateAdapter, APP_DATE_FORMATS } from './date.adapter';
 })
 export class EditKhachhangComponent implements OnInit,AfterViewInit{
  
- 
+  checked:boolean=false;
   notEdit=true;
   minDate = new Date(1900, 0, 1);
   maxDate = new Date();
@@ -30,7 +30,6 @@ export class EditKhachhangComponent implements OnInit,AfterViewInit{
  // private subjectkh: Subscription;
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     private khservice: KhachhangService,
     private dateAdapter: DateAdapter<Date>,
     private _snackBar: MatSnackBar
@@ -41,12 +40,19 @@ set khachhang(value){
     if(value.ac === 'edit'){
       this.notEdit=false;
       this.formKhachhang.get('lapmatkhau').disable();
-      this.formKhachhang.get('Tendangnhap').setValue(value.data['Ten']);  
+      this.formKhachhang.get('Tendangnhap').disable();
+      this.formKhachhang.get('Matkhau').disable();
+      this.formKhachhang.get('Tendangnhap').setValue(value.data['Ten']); 
+     
       this.formKhachhang.patchValue(value.data);
+      this.formKhachhang.get('Hoatdong').setValue(+value.data['Hoatdong']);
     }
     else{
       if(value.ac === 'add'){
         this.formKhachhang.reset();
+        this.formKhachhang.get('lapmatkhau').enable();
+        this.formKhachhang.get('Tendangnhap').enable();
+      this.formKhachhang.get('Matkhau').enable();
         this.notEdit=true;
       }
      
@@ -61,14 +67,14 @@ set khachhang(value){
   ngOnInit() {
     this.dateAdapter.setLocale('vi');
     this.formKhachhang = this.fb.group({
-      Tendangnhap: ['', [Validators.required, Validators.maxLength(30)]],
+      Tendangnhap: ['', [Validators.required, Validators.maxLength(30)],this.CheckUsername.bind(this)],
       Matkhau: ['', [Validators.required, Validators.maxLength(30)]],
       lapmatkhau: [''],
       Hoten: ['', [Validators.required, Validators.maxLength(150)]],
       Email: ['', [Validators.required, Validators.email]],
-      SDT: ['', [Validators.required]],
+      SDT: ['', [Validators.required,CheckPhone]],
       Ngaysinh: ['', [Validators.required]],
-      Hoatdong:[false],
+      Hoatdong:[],
       TK_id:[],
       DC_id:[],
       KH_id:[],
@@ -84,11 +90,14 @@ set khachhang(value){
       
   }
   
-  onSubmit() {
+  onSubmit(va:string,form: NgForm) {
     const { valid, value } = this.formKhachhang;
     if(this.notEdit){
       if (valid) {
+        value.Ngaysinh=va.toString();
+        console.log(value);
         this.khservice.themKhachhang(value).subscribe(() => {
+          form.resetForm();
           this._snackBar.open("Thêm thành công", "Good!!", {
             duration: 2000,
             verticalPosition: 'top'
@@ -107,8 +116,11 @@ set khachhang(value){
       }
     }else{
       if (valid) {
-        console.log(">>>>>>>>>>>>>>>>>",value);
+        value.Ngaysinh=va.toString();
+        value.Hoatdong=+ value.Hoatdong;
         this.khservice.suaKhachhang(value).subscribe(() => {
+          form.resetForm();
+        //  this.formKhachhang.reset();
           this._snackBar.open("Sửa thành công", "Good!!", {
             duration: 2000,
             verticalPosition: 'top'
@@ -129,6 +141,17 @@ set khachhang(value){
     }
     
   }
+   CheckUsername(useValue:AbstractControl){
+    return this.khservice.chechUsername(useValue.value).pipe(
+      delay(2000),
+      map(data=>{
+        if(data['status']===true)
+      return  null;
+      else 
+      return { userTaken: true };
+    }));
+  
+  }
 }
 export function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -147,4 +170,10 @@ export function MustMatch(controlName: string, matchingControlName: string) {
       matchingControl.setErrors(null);
     }
   }
+}
+export function CheckPhone(phone:AbstractControl){
+  const regex=/[^_0-9]/
+  if(regex.test(phone.value)){
+ return { invalidPhone:true};
+  }else return null;
 }

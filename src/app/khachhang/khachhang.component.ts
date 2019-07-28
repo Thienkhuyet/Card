@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { KhachhangService } from './khachhang.service';
+import { DanhsachKhachhangComponent } from './danhsach-khachhang/danhsach-khachhang.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
 
 @Component({
   selector: 'app-khachhang',
@@ -7,26 +8,30 @@ import { KhachhangService } from './khachhang.service';
   styleUrls: ['./khachhang.component.scss']
 })
 export class KhachhangComponent implements OnInit {
+ 
   tapIndex = 0;
+ 
   dataKhachhang={};
-   data:[];
-  constructor(private khService: KhachhangService) { }
+@ViewChild(DanhsachKhachhangComponent,{static:false})danhsach:DanhsachKhachhangComponent;
+  constructor() { }
 
   ngOnInit() {
-    this.khService.getRepoIssues().subscribe(res=>{
-      this.data=res;
-    })
+ 
   }
-  
-
+ 
   getkhachhang(data) {
     this.dataKhachhang = data;
     this.tapIndex = 1;
   }
   setTap(index) {
-   if(index===0) this.khService.getRepoIssues().subscribe(res=>{
-      this.data=res;
-    });
+  //   this.khService.getRepoIssues().subscribe(res=>{
+  //     this.data=res;
+  //   });
     this.tapIndex = index;
+    if(index===0)
+    this.danhsach.onBlur("");
+  }
+  getchang(a){
+  //  this.pageSize = a.pageSize;
   }
 }

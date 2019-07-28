@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -12,32 +13,31 @@ export class KhachhangService {
   constructor(private http: HttpClient) { }
   themKhachhang(data: any) {
     let headers = {
-      'Authorization': localStorage.getItem('tocken'),
+      'Authorization': JSON.parse(localStorage.getItem('tocken'))['jwt'],
     }
     return this.http.post(this.url + 'add', data, { headers });
   }
   //chuc nang sua khach hang
   suaKhachhang(data: any) {
     let headers = {
-      'Authorization': localStorage.getItem('tocken'),
+      'Authorization': JSON.parse(localStorage.getItem('tocken'))['jwt']
     }
     return this.http.post(this.url + `edit`, data,{headers});
   }
   
-  // setSuaKhachhang(data){
-  //  this.subject.next(data);
-  // }
-  // getSuaKhachhang(){
-  // return  this.subject;
-  //  }
 
-  getRepoIssues(): Observable<any> {
-    let headers = {
-      'Authorization': localStorage.getItem('tocken'),
+  getKhachhangs(sort: string, order: string, page: number,pageSize,search) {
+     if(sort==='created')sort='Hoten';
+     let headers = {
+      'Authorization': JSON.parse(localStorage.getItem('tocken'))['jwt']
     }
-    const href = 'http://localhost/Card/www/khachhang.php?action=list';
-    return this.http.get<any>(href, { headers });
+    const requestUrl =
+        `${this.url}list&sort=${sort}&order=${order}&page=${page + 1}&size=${pageSize}&search=${search}`;
+
+    return this.http.get<any>(requestUrl,{headers});
   }
-  
-  
+  chechUsername(name:string){
+    const value= {username:name};
+    return this.http.post(this.url+'checkDuplicate',value);
+  }  
 }

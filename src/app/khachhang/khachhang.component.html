@@ -1,6 +1,9 @@
 <mat-tab-group [selectedIndex]="tapIndex" (selectedIndexChange)="setTap($event)">
-    <mat-tab label="Danh sách khách hàng"> 
-        <app-danhsach-khachhang [dataKhachhang1]="data" (eventKhachhang)="getkhachhang($event)"></app-danhsach-khachhang> 
+    <mat-tab label="Danh sách khách hàng" class="tap-hight"> 
+        <app-danhsach-khachhang 
+         (eventKhachhang)="getkhachhang($event)"></app-danhsach-khachhang> 
+         <button (click)="getkhachhang({ac:'add',data:null})" mat-mini-fab color="warn" class="is-big"><mat-icon>add</mat-icon></button>
+
     </mat-tab>
     <mat-tab label="Chi tiết khách hàng" [disabled]="true">
     <app-edit-khachhang [khachhang]="dataKhachhang" ></app-edit-khachhang>    

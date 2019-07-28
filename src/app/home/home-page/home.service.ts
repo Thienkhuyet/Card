@@ -5,13 +5,15 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HomeService {
-  private readonly url = 'http://localhost/www/Home.php';
+  private readonly url = 'http://localhost/Card/www/Home.php';
   constructor(private http: HttpClient) { }
-  getHomePage() {
-    let headers = {
-      'Authorization': localStorage.getItem('tocken'),
-    }
-    return this.http.get<any>(this.url, { headers });
+  getRepoIssues(sort: string, order: string, page: number,pageSize,search) {
+    console.log(search);
+     if(sort==='created')sort='Hoten';
+    const requestUrl =
+        `${this.url}?&sort=${sort}&order=${order}&page=${page + 1}&size=${pageSize}&search=${search}`;
+
+    return this.http.get<any>(requestUrl);
   }
 
 }

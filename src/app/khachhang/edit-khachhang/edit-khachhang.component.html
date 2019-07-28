@@ -1,26 +1,28 @@
-<form [formGroup]="formKhachhang" >
+<form [formGroup]="formKhachhang" #myForm="ngForm">
     <div layout="column" class="container">
         <div layout="row  center-spread">
-            <div  class="field"> 
-                  <h2 *ngIf="notEdit">Thông tin khách hàng</h2>
-                  <h2 *ngIf="!notEdit">Sửa thông tin khách hàng</h2>
-                 </div>
-            <div  class="field">
-                <mat-slide-toggle formControlName="Hoatdong">Hoạt Động</mat-slide-toggle>
+            <div class="field">
+                <h2>Thông tin khách hàng</h2>
+                <!-- <h2 *ngIf="!notEdit">Sửa thông tin khách hàng</h2> -->
+            </div>
+            <div class="field">
+                <mat-slide-toggle *ngIf="!notEdit" formControlName="Hoatdong">Hoạt Động</mat-slide-toggle>
             </div>
         </div>
-     
-        <div layout="row center-spread">
+
+        <div layout="row center-spread" *ngIf="notEdit">
             <mat-form-field class="field">
+
                 <input matInput placeholder="Tên Đăng nhập" formControlName="Tendangnhap" />
                 <mat-hint align="end">Không quá 30 ký tự</mat-hint>
                 <mat-error *ngIf="formKhachhang.get('Tendangnhap').hasError('maxlength')
-                           &&formKhachhang.get('Tendangnhap').touched">
+                           ">
                     Độ dài không được quá 30 ký tự
                 </mat-error>
-                <mat-error
-                    *ngIf="formKhachhang.get('Tendangnhap').hasError('required')&&formKhachhang.get('Tendangnhap').touched">
+                <mat-error *ngIf="formKhachhang.get('Tendangnhap').hasError('required')">
                     Không được để trống</mat-error>
+                <mat-error *ngIf="formKhachhang.get('Tendangnhap').hasError('userTaken')
+            ">Tài khoản đã tồn tại </mat-error>
             </mat-form-field>
             <mat-form-field class="field">
                 <input type="password" matInput placeholder="Mật khẩu" formControlName="Matkhau" />
@@ -28,10 +30,9 @@
                     <mat-icon>lock</mat-icon>
                 </span>
                 <mat-error *ngIf="formKhachhang.get('Matkhau').hasError('required')
-                &&formKhachhang.get('Matkhau').touched">
+               ">
                     Không được để trống</mat-error>
-                <mat-error
-                    *ngIf="formKhachhang.get('Matkhau').hasError('maxlength')&&formKhachhang.get('Matkhau').touched">
+                <mat-error *ngIf="formKhachhang.get('Matkhau').hasError('maxlength')">
                     Mật khẩu quá dài không quá 30 ký tự</mat-error>
             </mat-form-field>
             <mat-form-field class="field" *ngIf="notEdit">
@@ -55,15 +56,17 @@
             <mat-form-field class="field">
                 <input type="text" matInput placeholder="Số điện thoại" formControlName="SDT">
                 <span matPrefix>
-                  (+84)
+                    (+84)
                 </span>
+                <mat-error *ngIf="formKhachhang.get('SDT').hasError('invalidPhone')">
+                    Không phải số điện thoại</mat-error>
                 <mat-hint align="end">vd:914028770</mat-hint>
             </mat-form-field>
         </div>
         <div layout="row center-spread">
             <mat-form-field class="field">
-                <input [min]="minDate" [max]="maxDate" matInput [matDatepicker]="picker" formControlName="Ngaysinh"
-                    placeholder="Chọn ngày sinh" disabled>
+                <input type="text" disabled [min]="minDate" [max]="maxDate" matInput [matDatepicker]="picker"
+                    formControlName="Ngaysinh" placeholder="Chọn ngày sinh" #date1>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker disabled="false" #picker></mat-datepicker>
             </mat-form-field>
@@ -87,13 +90,15 @@
         </div>
         <div layout="row">
             <div self="right">
-                 <button mat-raised-button (click)="formKhachhang.reset()" color="pramary">Hủy bỏ</button>
-                <button *ngIf="notEdit" mat-raised-button (click)="onSubmit()" color="accent" [disabled]="formKhachhang.pristine || formKhachhang.invalid">
-                     Thêm
+                <button mat-raised-button (click)="formKhachhang.reset()" color="pramary">Hủy bỏ</button>
+                <button *ngIf="notEdit" mat-raised-button (click)="onSubmit(date1.value, myForm)" color="accent"
+                    [disabled]="formKhachhang.pristine || formKhachhang.invalid">
+                    Thêm
                 </button>
-                <button *ngIf="!notEdit" mat-raised-button (click)="onSubmit()" color="accent" [disabled]="formKhachhang.pristine || formKhachhang.invalid">
-                        Sửa
-                   </button>
+                <button *ngIf="!notEdit" mat-raised-button (click)="onSubmit(date1.value, myForm)" color="accent"
+                    [disabled]="formKhachhang.pristine || formKhachhang.invalid">
+                    Sửa
+                </button>
             </div>
         </div>
     </div>

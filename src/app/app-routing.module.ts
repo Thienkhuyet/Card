@@ -25,6 +25,7 @@ const routes: Routes = [
   {
     path: 'khachhang',
     loadChildren: () => import('./khachhang/khachhang.module').then(m => m.KhachhangModule),
+    canActivate: [OauthGuard]
   }
 ];
 

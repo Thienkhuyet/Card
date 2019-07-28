@@ -1,58 +1,93 @@
-<div class="container">
-  <div class="box">
-    <mat-card>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults || isRateLimitReached">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+      Khach hang API not word
+    </div>
   </div>
-  <div class=" box">sds
-  </div>
-  <div class="box">sds</div>
-  <div class="box">sda</div>
-  <div class="box">asd</div>
-  <div class="box">asd</div>
-  <div class="box">asd</div>
-  <div class="box">
-    <mat-card>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+<div class="example-table-container">
+ <mat-form-field>
+   <input type="text" matInput placeholder="Timkhiem" (blur)="onBlur(search.value)" #search/>
+ </mat-form-field>
+  <table mat-table [dataSource]="data" class="example-table" matSort matSortActive="created" matSortDisableClear
+      matSortDirection="desc">
+
+      <ng-container matColumnDef="STT">
+          <th mat-header-cell *matHeaderCellDef>STT</th>
+          <td mat-cell *matCellDef="let row; let i=index">{{i+1}}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Hoten">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Họ tên</th>
+          <td mat-cell *matCellDef="let row">{{row.Hoten}}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Email</th>
+          <td mat-cell *matCellDef="let row">{{row.Email}}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Ngaysinh">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+              Ngày sinh
+          </th>
+          <td mat-cell *matCellDef="let row">{{row.Ngaysinh | date}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Ten">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+              Tên Đăng nhập
+          </th>
+          <td mat-cell *matCellDef="let row">{{row.Ten}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Matkhau">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+              Mật khẩu
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.Matkhau }}</td>
+      </ng-container>
+      <ng-container matColumnDef="SDT">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+              Số điện thoại
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.SDT }}</td>
+      </ng-container>
+      <ng-container matColumnDef="Chucnang">
+          <th mat-header-cell *matHeaderCellDef>
+              Chức năng
+          </th>
+          <td mat-cell *matCellDef="let row">
+                  <button mat-icon-button [matMenuTriggerFor]="menu">
+                          <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu  #menu="matMenu">
+                          <!-- <button mat-menu-item (click)="suaKhachhang('add',null)"> 
+                               <mat-icon>add</mat-icon>
+                               Thêm khach hang
+                          </button>
+                          <button mat-menu-item (click)="suaKhachhang('edit',row)">
+                                  <mat-icon>edit</mat-icon>
+                                  Sửa khách hàng
+                          </button> -->
+                          <button mat-menu-item >
+                                  <mat-icon>delete</mat-icon>
+                                  Xóa khách hàng
+                          </button>
+                  </mat-menu>
+            
+
+          </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>
 
-<!-- 
-<div class="container-1">
-  <div class="box-1">
-    <h3>Box 1</h3>
-    <p>this is Box 1</p>
-  </div>
-  <div class="box-2">
-    <h3>Box 2</h3>
-    <p>this is Box 2</p>
-  </div>
-  <div class="box-3">
-    <h3>Box 3</h3>
-    <p>this is Box 3</p>
-  </div>
 
-</div> -->
+<mat-paginator [length]="resultsLength" [pageSizeOptions]="[1,2,3]" (page)="getchang($event)" showFirstLastButtons></mat-paginator>

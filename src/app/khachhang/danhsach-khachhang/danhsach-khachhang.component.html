@@ -1,45 +1,56 @@
-<div class="example-table-container">
-
-    <table mat-table [dataSource]="dataSource" class="example-table" matSort matSortActive="created" matSortDisableClear
+<div class="example-container mat-elevation-z8">
+    <!-- <div class="example-loading-shade"
+         *ngIf="isLoadingResults || isRateLimitReached">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+      <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+        Khach hang API not word
+      </div>
+    </div> -->
+  <div class="example-table-container">
+   <mat-form-field style="margin-left: 20px">
+     <input type="text" matInput placeholder="Timkhiem" (blur)="onBlur(search.value)" #search/>
+     <button matSuffix mat-icon-button><mat-icon>search</mat-icon> </button>
+   </mat-form-field>
+    <table mat-table [dataSource]="data" class="example-table" matSort matSortActive="created" matSortDisableClear
         matSortDirection="desc">
-
+  
         <ng-container matColumnDef="STT">
             <th mat-header-cell *matHeaderCellDef>STT</th>
             <td mat-cell *matCellDef="let row; let i=index">{{i+1}}</td>
         </ng-container>
-
-
+  
+  
         <ng-container matColumnDef="Hoten">
             <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Họ tên</th>
             <td mat-cell *matCellDef="let row">{{row.Hoten}}</td>
         </ng-container>
-
-
+  
+  
         <ng-container matColumnDef="Email">
             <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Email</th>
             <td mat-cell *matCellDef="let row">{{row.Email}}</td>
         </ng-container>
-
-
+  
+  
         <ng-container matColumnDef="Ngaysinh">
             <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
                 Ngày sinh
             </th>
-            <td mat-cell *matCellDef="let row">{{row.Ngaysinh | date}}</td>
+            <td mat-cell *matCellDef="let row">{{row.Ngaysinh | date: 'dd/MM/yyyy'}}</td>
         </ng-container>
-
+  
         <ng-container matColumnDef="Ten">
             <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
                 Tên Đăng nhập
             </th>
             <td mat-cell *matCellDef="let row">{{row.Ten}}</td>
         </ng-container>
-
+  
         <ng-container matColumnDef="Matkhau">
             <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
-                Mật khẩu
+                Hoạt động
             </th>
-            <td mat-cell *matCellDef="let row">{{ row.Matkhau | matkhau }}</td>
+            <td mat-cell *matCellDef="let row"><mat-icon> {{ +row.Hoatdong ===1? 'done':'not_interested' }} </mat-icon></td>
         </ng-container>
         <ng-container matColumnDef="SDT">
             <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
@@ -56,13 +67,9 @@
                             <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu  #menu="matMenu">
-                            <button mat-menu-item (click)="suaKhachhang('add',null)"> 
-                                 <mat-icon>add</mat-icon>
-                                 Thêm khach hang
-                            </button>
                             <button mat-menu-item (click)="suaKhachhang('edit',row)">
                                     <mat-icon>edit</mat-icon>
-                                    Sửa khách hàng
+                                    Chi tiết
                             </button>
                             <button mat-menu-item >
                                     <mat-icon>delete</mat-icon>
@@ -70,14 +77,14 @@
                             </button>
                     </mat-menu>
               
-
+  
             </td>
         </ng-container>
-
+  
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-</div>
-
-
-<mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+  </div>
+  
+  
+  <mat-paginator [length]="resultsLength" [pageSizeOptions]="[5,10,15]" (page)="getchang($event)" showFirstLastButtons></mat-paginator>

@@ -20,9 +20,7 @@ if(isset($data)){
 $username = $data->username;
 $password = $data->password;
 }
-$table_name = 'taikhoan';
-
-$query = "SELECT TK_id,Ten,Matkhau ,Vaitro FROM " . $table_name . " WHERE Ten = ? LIMIT 0,1";
+$query = "SELECT TK_id,Ten,Matkhau ,Vaitro,Hoatdong FROM taikhoan WHERE Ten = ? LIMIT 0,1";
 
 $stmt = $conn->prepare( $query );
 $stmt->bindParam(1, $username);
@@ -35,9 +33,9 @@ if($num > 0){
     $username2 = $row['Ten'];
     $active = $row['Vaitro'];
     $password2 = $row['Matkhau'];
-  //  $hoatdong= $row['Hoatdong'];
-
-    if($password == $password2 )
+    $hoatdong= $row['Hoatdong'];
+    
+    if($password == $password2 & $hoatdong==1)
     {
         $secret_key = "Minhvuong";
         // key jwt

@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { KhachhangRoutingModule } from './khachhang-routing.module';
 import { EditKhachhangComponent } from './edit-khachhang/edit-khachhang.component';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatNativeDateModule, MatMenuModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatNativeDateModule, MatMenuModule, MatProgressSpinnerModule } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ThongbaoComponent } from './thongbao/thongbao.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -44,7 +44,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatTooltipModule,
     MatTabsModule,
     MatMenuModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatProgressSpinnerModule,
+    
 
 
   ],
