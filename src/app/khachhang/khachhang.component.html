@@ -5,7 +5,11 @@
          <button (click)="getkhachhang({ac:'add',data:null})" mat-mini-fab color="warn" class="is-big"><mat-icon>add</mat-icon></button>
 
     </mat-tab>
+    
     <mat-tab label="Chi tiết khách hàng" [disabled]="true">
     <app-edit-khachhang [khachhang]="dataKhachhang" ></app-edit-khachhang>    
     </mat-tab>
+    <mat-tab label="Thống kê khách hàng">
+      <app-thongke></app-thongke>
+      </mat-tab>
   </mat-tab-group>

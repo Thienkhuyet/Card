@@ -40,4 +40,7 @@ export class KhachhangService {
     const value= {username:name};
     return this.http.post(this.url+'checkDuplicate',value);
   }  
+  getThongke(){
+   return  this.http.get<any>('http://localhost/Card/www/register.php?khang=11');
+  }
 }
