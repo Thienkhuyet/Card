@@ -17,14 +17,16 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatkhauPipe } from './matkhau.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { KhachhangComponent } from './khachhang.component';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ThongkeComponent } from './thongke/thongke.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 
 
 @NgModule({
-  declarations: [EditKhachhangComponent, ThongbaoComponent, DanhsachKhachhangComponent, MatkhauPipe, KhachhangComponent],
+  declarations: [EditKhachhangComponent, ThongbaoComponent, DanhsachKhachhangComponent, MatkhauPipe, KhachhangComponent, ThongkeComponent],
   imports: [
     CommonModule,
     KhachhangRoutingModule,
@@ -46,8 +48,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatMenuModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
-    
-
+    ChartsModule
 
   ],
   entryComponents: [ThongbaoComponent, EditKhachhangComponent],

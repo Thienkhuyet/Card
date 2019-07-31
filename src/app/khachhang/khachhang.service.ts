@@ -36,8 +36,12 @@ export class KhachhangService {
 
     return this.http.get<any>(requestUrl, { headers });
   }
-  chechUsername(name: string) {
+
+  checkUsername(name: string) {
     const value = { username: name };
     return this.http.post(this.url + 'checkDuplicate', value);
+  }
+  getThongke() {
+    return this.http.get<any>('http://localhost/Card/www/register.php?khang=11');
   }
 }
