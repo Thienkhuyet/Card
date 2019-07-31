@@ -22,22 +22,22 @@ export class KhachhangService {
     let headers = {
       'Authorization': JSON.parse(localStorage.getItem('tocken'))['jwt']
     }
-    return this.http.post(this.url + `edit`, data,{headers});
+    return this.http.post(this.url + `edit`, data, { headers });
   }
-  
 
-  getKhachhangs(sort: string, order: string, page: number,pageSize,search) {
-     if(sort==='created')sort='Hoten';
-     let headers = {
+
+  getKhachhangs(sort: string, order: string, page: number, pageSize, search) {
+    if (sort === 'created') sort = 'Hoten';
+    let headers = {
       'Authorization': JSON.parse(localStorage.getItem('tocken'))['jwt']
     }
     const requestUrl =
-        `${this.url}list&sort=${sort}&order=${order}&page=${page + 1}&size=${pageSize}&search=${search}`;
+      `${this.url}list&sort=${sort}&order=${order}&page=${page + 1}&size=${pageSize}&search=${search}`;
 
-    return this.http.get<any>(requestUrl,{headers});
+    return this.http.get<any>(requestUrl, { headers });
   }
-  chechUsername(name:string){
-    const value= {username:name};
-    return this.http.post(this.url+'checkDuplicate',value);
-  }  
+  chechUsername(name: string) {
+    const value = { username: name };
+    return this.http.post(this.url + 'checkDuplicate', value);
+  }
 }
